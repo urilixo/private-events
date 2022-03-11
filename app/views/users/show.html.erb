@@ -1,19 +1,24 @@
 <p id="notice"><%= notice %></p>
+<div class="section is-fluid">
+  <div class="columns is-centered">
+    <div class="column is-half">
+    <% current_user.events.each do |event| %>
+        <div class="message is-link">
+          <div class="message-header">
+            <p><%= event.title %></p>
+            <div class="has-text-right">created by: <%= current_user.username %></div>
+          </div>
+          <div class="message-body">
+            <%= event.location %>
+            <div class="has-text-right">Event date: <%= event.date.to_formatted_s(:short) %></div>
+          </div>
+        </div>
+    <% end %>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
