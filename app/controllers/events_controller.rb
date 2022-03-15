@@ -23,10 +23,8 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = current_user.events.build(event_params)
-    @event.users << current_user
+    @event = current_user.created_events.build(event_params)
     
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
