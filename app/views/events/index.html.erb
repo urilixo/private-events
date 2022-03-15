@@ -1,3 +1,55 @@
+<div class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <% @events.each do |event| %>
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-3by1"><img src="https://bulma.io/images/placeholders/720x240.png" alt="Placeholder image"></figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48"><img class='is-rounded' src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"></figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4"><%= event.title %></p>
+                  
+                  <div class="columns">
+                    <div class="column">
+                      <p class="subtitle is-6"><%= event.location.humanize %>, <%= event.date.to_formatted_s(:short) %></p>
+                    </div>
+                    <div class="column">
+                      <p class="subtitle is-6 has-text-right">Created by: <%= event.creator.username.humanize %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. A excepturi aliquid cumque non dignissimos nobis asperiores, rerum debitis iusto ab alias nam architecto at esse illo voluptatum provident nostrum! Repellat.
+            </div>
+            <% if user_signed_in? %>
+              <footer class="card-footer">
+                <% if current_user.attended_events.include?(event)  %>
+                  <div class="card-footer-item"><%= link_to 'Leave Event', invites_path(invite: {attendee_id: current_user.id, event_id: event.id}), class: 'button is-fullwidth is-danger is-outlined is-light', method: :delete%></div>
+                <% else %>
+                  <div class="card-footer-item"><%= link_to 'Join Event', invites_path(invite: {attendee_id: current_user.id, event_id: event.id}), class: 'button is-fullwidth is-success is-outlined is-light', method: :post%></div>
+                <% end%>
+                <% if current_user == event.creator %>
+                  <div class="card-footer-item"><%= link_to 'Edit Event', edit_event_path(event), class: 'button is-fullwidth is-warning has-text-black'%></div>
+                  <div class="card-footer-item"><%= link_to 'Cancel Event', event, class: 'button is-fullwidth is-danger has-text-white', method: :delete, data: { confirm: 'Are you sure you want to cancel the event? This action cannot be undone' } %></div>
+                <% end %>
+              </footer>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Events</h1>
