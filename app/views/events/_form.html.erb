@@ -33,7 +33,9 @@
     <%= f.input :date,
                 wrapper: false,
                 input_html: {class: 'date'},
-                label_html: {class: 'label'}
+                label_html: {class: 'label'},
+                start_year: Date.today.year,
+                end_year: Date.today.year + 10
             
     %>
     </div>
