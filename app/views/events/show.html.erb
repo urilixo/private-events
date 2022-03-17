@@ -1,8 +1,36 @@
+<div class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column">
+        
+        <div class="has-text-centered is-size-3"><%= @event.title.humanize %></div>
+        <div class="has-text-left is-size-8 mt-2"><%= @event.location.humanize %></div>
+        <div class="has-text-left is-size-5 mt-5"><%= @event.location.humanize %></div>
+      
+      </div>
+      <div class="column">
+        <p class="is-size-3 has-text-centered">Who joined this event?</p>
+        <div class="has-text-centered is-size-5 mt-5">
+            <% @event.attendees.each do |attendee| %>
+              <%= attendee.username.humanize %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
+
   <strong>Title:</strong>
-  <%= @event.title %>
+  <% @event.attendees.each do |attendee| %>
+    <%= attendee.username %>
+
+  <% end %>
 </p>
 
 <p>
