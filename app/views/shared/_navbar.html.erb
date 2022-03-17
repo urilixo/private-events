@@ -1,0 +1,25 @@
+<nav class="navbar is-dark has-shadow">
+  <div class="navbar-brand">
+    <a href="" class="navbar-item">
+      <img src="" alt=""></a><a href="" class="buton">
+        <span></span><span></span><span></span></a></div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">Events</a>
+      <a class="navbar-item">Hello</a>
+      <a class="navbar-item">Menu</a>
+    </div>
+  </div>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+      <% unless user_signed_in? %>
+        <%= link_to "Login", new_user_session_path, class: 'button is-white' %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'button is-rounded is-dark' %>
+      <% else %>
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button is-rounded is-dark' %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
