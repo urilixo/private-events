@@ -3,9 +3,10 @@
     <div class="columns is-centered">
       <div class="column is-half">
         <% @events.each do |event| %>
-          <div class="card">
+          <div class="card m-5">
             <div class="card-image">
-              <figure class="image is-3by1"><img src="https://bulma.io/images/placeholders/720x240.png" alt="Placeholder image"></figure>
+              <figure class="image is-3by1">
+              <%= link_to image_tag("https://bulma.io/images/placeholders/720x240.png"), event_path(event.id)%></figure>
             </div>
             <div class="card-content">
               <div class="media">
@@ -26,8 +27,8 @@
                 </div>
               </div>
             </div>
-            <div class="content">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. A excepturi aliquid cumque non dignissimos nobis asperiores, rerum debitis iusto ab alias nam architecto at esse illo voluptatum provident nostrum! Repellat.
+            <div class="content p-5">
+              <%= event.description %>
             </div>
             <% if user_signed_in? %>
               <footer class="card-footer">
@@ -51,8 +52,3 @@
     </div>
   </div>
 </div>
-
-
-<p id="notice"><%= notice %></p>
-
-

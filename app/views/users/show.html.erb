@@ -5,7 +5,7 @@
     <% @user.attended_events.each do |event| %>
         <div class="message is-link">
           <div class="message-header">
-            <p><%= event.title %></p>
+            <p><%= link_to event.title, event_path(event.id) %></p>
             <div class="has-text-right">created by: <%= event.creator.username %></div>
           </div>
           <div class="message-body">

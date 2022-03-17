@@ -5,9 +5,10 @@
         <span></span><span></span><span></span></a></div>
   <div class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">Events</a>
-      <a class="navbar-item">Hello</a>
-      <a class="navbar-item">Menu</a>
+      <%= link_to "Home", root_path, class: 'navbar-item' %>
+      <% if user_signed_in? %>
+        <%= link_to "My events", current_user, class: 'navbar-item' %>
+      <% end %>
     </div>
   </div>
   <div class="navbar-end">
