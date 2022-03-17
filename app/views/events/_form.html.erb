@@ -1,15 +1,53 @@
-
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :location %>
-    <%= f.input :date %>
+  <div class="field">
+    <div class="control">
+    <%= f.input :title,
+                wrapper: false,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'}
+    %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="field">
+    <div class="control">
+    <%= f.input :description,
+                wrapper: false,
+                input_html: {class: 'textarea'},
+                label_html: {class: 'label'}
+    %>
+    </div>
   </div>
-<% end %>
+  <div class="field">
+    <div class="control">
+    <%= f.input :location,
+                wrapper: false,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'}
+    %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+    <%= f.input :date,
+                wrapper: false,
+                input_html: {class: 'date'},
+                label_html: {class: 'label'}
+            
+    %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+    <%= f.button :submit,
+                wrapper: false,
+                class: 'button is-primary',
+                label_html: {class: 'label'}
+    %>
+    </div>
+  </div>
+  <% end %>
+ 
+
+

@@ -1,6 +1,22 @@
-<h1>Editing Event</h1>
+<div class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-half"> 
+<div class="card">
+<div class="card-header">
+  <p class="card-header-title has-text-centered is-size-3 mb-5">Edit event</p>
+</div>
+  <div class="card-content">
+    <%= render 'form', event: @event %>
+    
+    <% link_to 'Show', @event %> 
+    <%= link_to 'Back', events_path %>
+  </div>
+</div>
 
-<%= render 'form', event: @event %>
+     </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+
