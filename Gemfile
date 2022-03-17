@@ -18,6 +18,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'simple_form', '~> 5.1'
 gem 'bulma-rails', '~> 0.9.3'
+gem 'pg'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -45,9 +47,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'guard', '~> 2.13'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
+  gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 end
 
 group :test do
