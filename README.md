@@ -1,24 +1,21 @@
-# README
+# Members Only
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Purpose
+This was created as part of a lesson from [TheOdinProject](https://www.theodinproject.com/) curriculum.
 
-Things you may want to cover:
+The goal of this project was to have a website that allowed users to create and join events.
 
-* Ruby version
+## Thoughts
+This project highlighted to me the power of rails associations, after correctly setting up the models it was mostly trivial to get the rest of the functionality in place.
 
-* System dependencies
 
-* Configuration
+## Gems used
+* [bulma-rails](https://rubygems.org/gems/bulma-rails)
 
-* Database creation
+* [devise](https://rubygems.org/gems/devise)
 
-* Database initialization
+* [simple_form](https://rubygems.org/gems/simple_form)
 
-* How to run the test suite
+## Demo
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project can be seen currently in a [Heroku](https://peaceful-waters-35351.herokuapp.com/).
