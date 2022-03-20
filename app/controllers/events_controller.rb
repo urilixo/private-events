@@ -12,6 +12,18 @@ class EventsController < ApplicationController
   def show
   end
 
+  def set_private
+    @event = Event.find(params[:id])
+    @event.update(is_private: true)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def set_public
+    @event = Event.find(params[:id])
+    @event.update(is_private: false)
+    redirect_back(fallback_location: root_path)
+  end
+
   # GET /events/new
   def new
     @event = Event.new
@@ -65,6 +77,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :location,:description, :date)
+      params.require(:event).permit(:title, :location, :description, :date, :is_private)
     end
 end

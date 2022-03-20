@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: :registrations }
-  resources :events
+  resources :events do
+    member { patch :set_private}
+    member { patch :set_public}
+  end
   resources :users
   resource :invites, only: %i[new create destroy]
   root to: 'events#index'
