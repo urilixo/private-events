@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[ show edit update destroy set_private set_public validate_creator]
+  before_action :validate_creator, only: %i[edit update destroy set_private set_public]
 
 
   # GET /events or /events.json
@@ -13,14 +14,14 @@ class EventsController < ApplicationController
   end
 
   def set_private
-    @event = Event.find(params[:id])
     @event.update(is_private: true)
+    flash[:notice] = 'This event has been set to private'
     redirect_back(fallback_location: root_path)
   end
 
   def set_public
-    @event = Event.find(params[:id])
     @event.update(is_private: false)
+    flash[:notice] = 'This event has been set to public'
     redirect_back(fallback_location: root_path)
   end
 
@@ -75,6 +76,9 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def validate_creator
+      render json: 'Only the creator of this event is allowed to do that.' unless @event.creator == current_user
+    end
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:title, :location, :description, :date, :is_private)
