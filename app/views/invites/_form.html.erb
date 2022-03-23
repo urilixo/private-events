@@ -1,0 +1,32 @@
+<%= simple_form_for(@invite) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="field">
+    <div class="control">
+    <%= f.input :attendee_id,
+                wrapper: false,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'}
+    %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+    
+    <%= f.hidden_field :event_id, value: params[:event_id]
+    %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+    <%= f.button :submit,
+                wrapper: false,
+                class: 'button is-primary',
+                label_html: {class: 'label'}
+    %>
+    </div>
+  </div>
+  <% end %>
+ 
+
+
