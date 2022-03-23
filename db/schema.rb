@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_20_200251) do
+ActiveRecord::Schema.define(version: 2022_03_22_042613) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2022_03_20_200251) do
     t.integer "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_confirmed", default: false
     t.index ["attendee_id"], name: "index_invites_on_attendee_id"
     t.index ["event_id"], name: "index_invites_on_event_id"
   end

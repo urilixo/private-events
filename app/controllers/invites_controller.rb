@@ -2,7 +2,6 @@ class InvitesController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
   before_action :set_invite, only: %i[ show edit update ]
   
-  
 
   # GET /invites or /invites.json
   def index
