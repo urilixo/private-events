@@ -31,7 +31,7 @@
     </div>
     <% if current_user == @event.creator%>
       <%= link_to 'Edit this event', edit_event_path(@event) %> |
-      <%= link_to 'Send invites out for this event', edit_event_path(@event) %> |
+      <%= link_to 'Send invites out for this event', new_invites_path(event_id: @event.id) %> |
       <% if @event.is_private? %>
         <%= link_to 'Make this event public', set_public_event_path(@event), method: 'patch' %> |
       <% else %>
