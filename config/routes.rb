@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: :registrations }
   resources :events do
-    member { patch :set_private}
-    member { patch :set_public}
+    member do
+      patch :set_private
+      patch :set_public
+      delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
+    end
   end
   resources :users
   resource :invites, only: %i[new create destroy]

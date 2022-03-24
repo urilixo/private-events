@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
-  before_action :set_event, only: %i[ show edit update destroy set_private set_public validate_creator]
-  before_action :validate_creator, only: %i[edit update destroy set_private set_public]
+  before_action :set_event, only: %i[ show edit update destroy set_private set_public validate_creator delete_image]
+  before_action :validate_creator, only: %i[edit update destroy set_private set_public delete_image]
 
 
   # GET /events or /events.json
@@ -47,6 +47,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    image.purge
+    redirect_back(fallback_location: root_path)
+  end
+
   # PATCH/PUT /events/1 or /events/1.json
   def update
     respond_to do |format|
@@ -81,6 +87,6 @@ class EventsController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :location, :description, :date, :is_private)
+      params.require(:event).permit(:title, :location, :description, :date, :is_private, :event_image)
     end
 end
