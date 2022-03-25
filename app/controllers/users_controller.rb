@@ -18,7 +18,18 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
-
+  
+  def send_invite
+    invited = User.find_by username: params[:search][:username]
+    if invited.nil?
+      flash[:notice] = 'Username not found!'
+    else
+      current_event = current_user.created_events.find(params[:search][:event_id])
+      current_event.invites.create(attendee_id: invited.id, event_id: :event_id)
+      flash[:notice] = 'Invite has been sent!'
+    end
+    redirect_back(fallback_location: root_path)
+  end
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
@@ -65,6 +76,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :search, :event_id)
     end
 end

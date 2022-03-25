@@ -7,7 +7,12 @@ Rails.application.routes.draw do
       delete 'delete_image/:image_id', action: 'delete_image', as: 'delete_image'
     end
   end
-  resources :users
+  resources :users do
+    member do
+      get :invite
+      get :send_invite
+    end
+  end
   resource :invites, only: %i[new create destroy]
   root to: 'events#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
