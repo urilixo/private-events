@@ -1,0 +1,29 @@
+<%= simple_form_for :search, url: send_invite_user_path, method: 'GET' do |f| %>
+  <div class="field">
+    <div class="control">
+    <%= f.input :username,
+                wrapper: false,
+                input_html: {class: 'input'},
+                label_html: {class: 'label'}
+    %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+    
+    <% f.hidden_field :event_id, value: params[:event_id]%>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+    <%= f.submit 'Invite',
+                wrapper: false,
+                class: 'button is-primary',
+                label_html: {class: 'label'}
+    %>
+    </div>
+  </div>
+  <% end %>
+ 
+
+
