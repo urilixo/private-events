@@ -83,10 +83,13 @@ class EventsController < ApplicationController
     end
 
     def validate_creator
-      render json: 'Only the creator of this event is allowed to do that.' unless @event.creator == current_user
+      return if @event.creator == current_user
+
+      flash[:notice] = "You don't have the right"
+      redirect_back(fallback_location: root_path)
     end
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :location, :description, :date, :is_private, :event_image)
+      params.require(:event).permit(:title, :location, :description, :date, :is_private, :event_image, :user_id)
     end
 end
