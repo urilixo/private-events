@@ -2,6 +2,20 @@
 <div class="section is-fluid">
   <div class="columns is-centered">
     <div class="column is-half">
+    <div class="has-text-centered is-size-3">Events you've created </div>
+    <% @user.created_events.each do |event| %>
+        <div class="message is-link-light">
+          <div class="message-header">
+            <p><%= link_to event.title, event_path(event.id) %></p>
+            <div class="has-text-right">created by: <%= event.creator.username %></div>
+          </div>
+          <div class="message-body">
+            <%= event.location %>
+            <div class="has-text-right">Event date: <%= event.date.to_formatted_s(:short) %></div>
+          </div>
+        </div>
+    <% end %>
+    <div class="has-text-centered is-size-3">Events you've joined</div>
     <% @user.attended_events.each do |event| %>
         <div class="message is-link">
           <div class="message-header">

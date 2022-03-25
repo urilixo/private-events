@@ -10,17 +10,21 @@
 
       <div class="columns is-multiline is-mobile is-centered">
         <% @events.upcoming.each do |event| %>
-          <div class="column is-3">
-            <% if event.is_private? %>
-              <% event.invites.unconfirmed.each do |invite| %>
-                <div> <%= current_user.id%></div>
-                <% if invite.attendee_id == current_user.id %>
-                  <div> Hey there</div>
-                <% end%>
-              <% end%>
+          
+            <% if user_signed_in? %>
+              <% if event.is_private? %>
+                <% event.invites.unconfirmed.each do |invite| %>
+                  <% next unless invite.attendee_id == current_user.id %>
+                  
+                  <%= render 'private_card', event: event %>
+                  <% break %>
+                <% end %>
+              <% else %>
+                <%= render 'card', event: event %>
+              <% end %>
+            <% else %>
+              <%= render 'card', event: event unless event.is_private? %>
             <% end %>
-            <%= render 'card', event: event %>
-          </div>
         <% end %>
       </div>
 
@@ -30,9 +34,7 @@
 
       <div class="columns is-multiline is-mobile is-centered">
         <% @events.in_the_past.each do |event| %>
-          <div class="column is-3">
             <%= render 'card', event: event %>
-          </div>
         <% end %>
       </div>
     </div>
